@@ -15,6 +15,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
 
 // Import root app
 import App from 'containers/App';
@@ -34,18 +36,24 @@ import { registerOpenSans } from './init';
 
 registerOpenSans();
 
+// init Apollo client
+const apolloClient = new ApolloClient();
+
 // Create redux store with history
 const initialState = {};
+
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = () => {
   ReactDOM.render(
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <App />
-      </ConnectedRouter>
-    </Provider>,
+    <ApolloProvider store={store} client={apolloClient}>
+      <Provider store={store} client={apolloClient}>
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
+      </Provider>
+    </ApolloProvider>,
     MOUNT_NODE
   );
 };

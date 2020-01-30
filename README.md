@@ -1,3 +1,10 @@
+# forked readme
+
+- The boilerplate is not maintainted any longer so some dependencies may be outdated
+- graphql/apollo integrated
+
+# original readme
+
 <img src="https://raw.githubusercontent.com/flexdinesh/react-redux-boilerplate/master/app/components/Header/images/banner.jpg" alt="react redux boilerplate banner" align="center" />
 
 <br />
