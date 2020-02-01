@@ -33,11 +33,26 @@ import configureStore from './configureStore';
 
 // Import all initialization stuff
 import { registerOpenSans } from './init';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
 
 registerOpenSans();
 
 // init Apollo client
-const apolloClient = new ApolloClient();
+const apolloCache = new InMemoryCache();
+const SANTIMENT_BASE_URL = 'https://api.santiment.net/graphql';
+const apolloLink = new HttpLink({
+  uri: SANTIMENT_BASE_URL,
+  headers: {
+    'Content-Type': 'application/graphql',
+    Authorization: `Apikey {process.env.SANTIMENT_API_KEY}`,
+  },
+});
+
+const apolloClient = new ApolloClient({
+  link: apolloLink,
+  cache: apolloCache,
+});
 
 // Create redux store with history
 const initialState = {};
@@ -47,8 +62,8 @@ const MOUNT_NODE = document.getElementById('app');
 
 const render = () => {
   ReactDOM.render(
-    <ApolloProvider store={store} client={apolloClient}>
-      <Provider store={store} client={apolloClient}>
+    <ApolloProvider client={apolloClient}>
+      <Provider store={store}>
         <ConnectedRouter history={history}>
           <App />
         </ConnectedRouter>

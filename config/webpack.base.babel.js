@@ -4,8 +4,18 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv');
 
 process.noDeprecation = true;
+
+// Get env
+const env = dotenv.config().parsed;
+
+// Parse env variables into an object
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
 
 module.exports = (options) => ({
   mode: options.mode,
@@ -69,14 +79,14 @@ module.exports = (options) => ({
       fetch: 'exports-loader?self.fetch!whatwg-fetch'
     }),
 
-    // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
-    // inside your code for any environment checks; UglifyJS will automatically
-    // drop any unreachable code.
+    // expose NODE_ENV to webpack
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
-    })
+    }),
+    // expose PROCESS env variables to frontend
+    new webpack.DefinePlugin(envKeys),
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
