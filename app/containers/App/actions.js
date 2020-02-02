@@ -26,11 +26,26 @@ import {
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
-export function loadRepos() {
-  return {
-    type: LOAD_REPOS,
-  };
-}
+export const loadRepos = () => ({
+  type: LOAD_REPOS,
+  request: {
+
+    query: `{
+      devActivity(
+        from: "2019-01-01T00:00:00Z",
+        interval: "1d",
+        slug: "ethereum",
+        to: "2019-01-07T00:00:00Z"
+       ) {
+        activity
+        datetime
+       }
+    }`,
+    headers: {
+      Authorization: `Apikey ${process.env.SANTIMENT_API_KEY}`,
+    },
+  },
+});
 
 /**
  * Dispatched when the repositories are loaded by the request saga

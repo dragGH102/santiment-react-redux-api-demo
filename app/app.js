@@ -58,6 +58,7 @@ const apolloClient = new ApolloClient({
 const initialState = {};
 
 const store = configureStore(initialState, history);
+
 const MOUNT_NODE = document.getElementById('app');
 
 const render = () => {

@@ -1,5 +1,7 @@
 # forked readme
 
+This project is just a draft and code splitting can be improved, along with proper linting
+
 - The boilerplate is not maintainted any longer so some dependencies may be outdated
 - graphql/apollo integrated
 

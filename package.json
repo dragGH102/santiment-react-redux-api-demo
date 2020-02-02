@@ -56,6 +56,8 @@
     "react-router-dom": "^5.0.1",
     "redux": "4.0.1",
     "redux-saga": "1.0.3",
+    "redux-saga-requests": "^0.26.1",
+    "redux-saga-requests-graphql": "^0.2.0",
     "reselect": "4.0.0",
     "sanitize.css": "10.0.0",
     "warning": "^4.0.3",
