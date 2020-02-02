@@ -1,28 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
-import RepoListItem from 'containers/RepoListItem';
+import { LOAD_REPOS } from '../../containers/App/constants';
+import { Query } from 'redux-saga-requests-react';
 
-const ReposList = ({ loading, error, repos }) => {
-  if (loading) {
-    return <List component={LoadingIndicator} />;
-  }
+const ErrorComponent = () => (
+  <ListItem item={'Something went wrong, please try again!'} />
+);
 
-  if (error !== false) {
-    const ErrorComponent = () => (
-      <ListItem item={'Something went wrong, please try again!'} />
-    );
-    return <List component={ErrorComponent} />;
-  }
-
-  if (repos !== false) {
-    return <List items={repos} component={RepoListItem} />;
-  }
-
-  return null;
+const ReposList = () => {
+  return (<Query
+    type={LOAD_REPOS}
+    errorComponent={ErrorComponent}
+    loadingComponent={LoadingIndicator}
+    noDataMessage={<p>There is no entity currently.</p>}
+  >
+    {({ data }) => {return JSON.stringify(data)}}
+  </Query>)
 };
 
 ReposList.propTypes = {

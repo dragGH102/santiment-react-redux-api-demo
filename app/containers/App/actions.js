@@ -20,6 +20,7 @@ import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
 } from './constants';
+import { gql } from 'redux-saga-requests-graphql';
 
 /**
  * Load the repositories, this action starts the request saga
@@ -30,7 +31,7 @@ export const loadRepos = () => ({
   type: LOAD_REPOS,
   request: {
 
-    query: `{
+    query: gql`{
       devActivity(
         from: "2019-01-01T00:00:00Z",
         interval: "1d",
