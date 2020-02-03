@@ -91,7 +91,8 @@ module.exports = (options) => ({
   resolve: {
     modules: ['app', 'node_modules'],
     extensions: ['.js', '.jsx', '.scss', '.react.js'],
-    mainFields: ['browser', 'jsnext:main', 'main']
+    mainFields: ['browser', 'jsnext:main', 'main'],
+    alias: { moment$: path.resolve(process.cwd(), "node_modules/moment/moment.js") }
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window

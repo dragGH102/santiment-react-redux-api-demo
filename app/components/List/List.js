@@ -5,11 +5,11 @@ import './style.scss';
 const List = ({ component, items }) => {
   const ComponentToRender = component;
   let content = (<div></div>);
-
+  
   // If we have items, render them
   if (items) {
     content = items.map((item) => (
-      <ComponentToRender key={`item-${item.id}`} item={item} />
+      <ComponentToRender key={`item-${item.activity}`} item={item} />
     ));
   } else {
     // Otherwise render a single component
