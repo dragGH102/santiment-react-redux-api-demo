@@ -4,7 +4,7 @@ This project is just a draft and code splitting can be improved, along with prop
 
 - The boilerplate is not maintainted any longer so some dependencies may be outdated
 - graphql/apollo integrated
-- for simplicity, component names and eventual unused selectors from the original repo haven't been kept as-is
+- for simplicity, component names, tests and eventual unused selectors from the original repo have been kept as-is
 
 # original readme
 

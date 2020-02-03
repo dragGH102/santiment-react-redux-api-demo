@@ -9,19 +9,17 @@ import {
   makeSelectError
 } from 'containers/App/selectors';
 import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
+import { changeSlug } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import HomePage from './HomePage';
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+  onChangeSlug: (evt) => dispatch(changeSlug(evt.target.value)),
   onSubmitForm: (evt) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-
-    // TODO: the parameter should come in from the UI
-    dispatch(loadRepos({ slug: 'ethereum'}));
+    dispatch(loadRepos({ slug: evt && evt.target.slug.value }));
   }
 });
 

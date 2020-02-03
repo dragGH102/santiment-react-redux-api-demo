@@ -15,21 +15,16 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    const { username, onSubmitForm } = this.props;
-    if (username && username.trim().length > 0) {
+    const { slug, onSubmitForm } = this.props;
+    if (slug && slug.trim().length > 0) {
       onSubmitForm();
     }
   }
 
   render() {
     const {
-      loading, error, repos, username, onChangeUsername, onSubmitForm
+      slug, onChangeSlug, onSubmitForm
     } = this.props;
-    const reposListProps = {
-      loading,
-      error,
-      repos
-    };
 
     return (
       <article>
@@ -48,18 +43,17 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <h2>Try me!</h2>
             <form onSubmit={onSubmitForm}>
               <label htmlFor="username">
-                Show Github repositories by
-                <span className="at-prefix">@</span>
+                Enter coin slug and press ENTER :&nbsp;
                 <input
-                  id="username"
+                  id="slug"
                   type="text"
                   placeholder="flexdinesh"
-                  value={username}
-                  onChange={onChangeUsername}
+                  value={slug}
+                  onChange={onChangeSlug}
                 />
               </label>
             </form>
-            <ReposList {...reposListProps} />
+            <ReposList />
           </section>
         </div>
       </article>
@@ -68,10 +62,8 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
 }
 
 HomePage.propTypes = {
-  loading: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   onSubmitForm: PropTypes.func,
-  username: PropTypes.string,
-  onChangeUsername: PropTypes.func
+  slug: PropTypes.string,
+  onChangeSlug: PropTypes.func
 };

@@ -8,13 +8,13 @@ import { shallow, mount } from 'enzyme';
 import ReposList from 'components/ReposList';
 import HomePage from '../HomePage';
 import { mapDispatchToProps } from '../index';
-import { changeUsername } from '../actions';
+import { changeSlug } from '../actions';
 import { loadRepos } from '../../App/actions';
 
 describe('<HomePage />', () => {
   it('should render the repos list', () => {
     const renderedComponent = shallow(
-      <HomePage loading error={false} repos={[]} />
+          <HomePage loading error={false} repos={[]} />
     );
     expect(
       renderedComponent.contains(<ReposList loading error={false} repos={[]} />)
@@ -26,7 +26,7 @@ describe('<HomePage />', () => {
     mount(
       <HomePage
         username="Not Empty"
-        onChangeUsername={() => {}}
+        onchangeSlug={() => {}}
         onSubmitForm={submitSpy}
       />
     );
@@ -35,7 +35,7 @@ describe('<HomePage />', () => {
 
   it('should not call onSubmitForm if username is an empty string', () => {
     const submitSpy = jest.fn();
-    mount(<HomePage onChangeUsername={() => {}} onSubmitForm={submitSpy} />);
+    mount(<HomePage onchangeSlug={() => {}} onSubmitForm={submitSpy} />);
     expect(submitSpy).not.toHaveBeenCalled();
   });
 
@@ -44,7 +44,7 @@ describe('<HomePage />', () => {
     mount(
       <HomePage
         username=""
-        onChangeUsername={() => {}}
+        onchangeSlug={() => {}}
         onSubmitForm={submitSpy}
       />
     );
@@ -52,19 +52,19 @@ describe('<HomePage />', () => {
   });
 
   describe('mapDispatchToProps', () => {
-    describe('onChangeUsername', () => {
+    describe('onchangeSlug', () => {
       it('should be injected', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
-        expect(result.onChangeUsername).toBeDefined();
+        expect(result.onchangeSlug).toBeDefined();
       });
 
-      it('should dispatch changeUsername when called', () => {
+      it('should dispatch changeSlug when called', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
         const username = 'flexdinesh';
-        result.onChangeUsername({ target: { value: username } });
-        expect(dispatch).toHaveBeenCalledWith(changeUsername(username));
+        result.onchangeSlug({ target: { value: username } });
+        expect(dispatch).toHaveBeenCalledWith(changeSlug(username));
       });
     });
 

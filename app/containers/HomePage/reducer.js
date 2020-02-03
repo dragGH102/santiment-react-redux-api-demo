@@ -1,15 +1,14 @@
-import { CHANGE_USERNAME } from './constants';
+import { CHANGE_SLUG } from './constants';
 
 // The initial state of the App
 const initialState = {
-  username: '',
+  slug: '',
 };
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_USERNAME:
-      // Delete prefixed '@' from the github username
-      return { ...state, username: action.name.replace(/@/gi, '') };
+    case CHANGE_SLUG:
+      return { ...state, slug: action.slug };
     default:
       return state;
   }
