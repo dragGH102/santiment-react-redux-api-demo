@@ -27,21 +27,23 @@ import { gql } from 'redux-saga-requests-graphql';
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
-export const loadRepos = () => ({
+export const loadRepos = ({ slug }) => ({
   type: LOAD_REPOS,
   request: {
 
-    query: gql`{
-      devActivity(
-        from: "2019-01-01T00:00:00Z",
-        interval: "1d",
-        slug: "ethereum",
-        to: "2019-01-07T00:00:00Z"
-       ) {
-        activity
-        datetime
-       }
-    }`,
+    query: gql`
+      query($slug: String!) {
+        devActivity(
+          from: "2019-01-01T00:00:00Z",
+          interval: "1d",
+          slug: $slug,
+          to: "2019-01-07T00:00:00Z"
+         ) {
+          activity
+          datetime
+         }
+      }`,
+    variables: { slug },
     headers: {
       Authorization: `Apikey ${process.env.SANTIMENT_API_KEY}`,
     },

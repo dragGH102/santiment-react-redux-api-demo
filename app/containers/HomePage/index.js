@@ -19,7 +19,9 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
   onSubmitForm: (evt) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    dispatch(loadRepos());
+
+    // TODO: the parameter should come in from the UI
+    dispatch(loadRepos({ slug: 'ethereum'}));
   }
 });
 
