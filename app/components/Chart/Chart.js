@@ -26,7 +26,7 @@ const Chart = ({ items }) => {
             <Line type='monotone' dataKey='activity' stroke='#f00'/>
             <CartesianGrid stroke='#000' />
             <XAxis dataKey='datetime' />
-            <YAxis/>
+            <YAxis />
           </LineChart>
         </ResponsiveContainer>
       </div>

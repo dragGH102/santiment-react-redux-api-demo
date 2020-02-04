@@ -1,6 +1,9 @@
+$zero-value: 0;
+$padding-value: 15px;
+
 .chart-wrapper {
-  padding: 0;
-  margin: 0;
+  padding: $padding-value;
+  margin: 15px $zero-value;
   width: 100%;
   background-color: white;
   border: 1px solid #ccc;
