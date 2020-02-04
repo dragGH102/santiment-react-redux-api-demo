@@ -42,7 +42,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                 <input
                   id="slug"
                   type="text"
-                  placeholder="flexdinesh"
+                  placeholder="ethereum"
                   value={slug}
                   onChange={onChangeSlug}
                 />
