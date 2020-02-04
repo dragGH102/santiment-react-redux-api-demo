@@ -6,6 +6,10 @@ This project is just a draft and code splitting can be improved, along with prop
 - graphql/apollo integrated
 - for simplicity, component names, tests and eventual unused selectors from the original repo have been kept as-is
 
+
+> You need to rename .env.sample to .env and get an API key for the project to work
+Then run via yarn/npm install -> npm start
+
 # original readme
 
 <img src="https://raw.githubusercontent.com/flexdinesh/react-redux-boilerplate/master/app/components/Header/images/banner.jpg" alt="react redux boilerplate banner" align="center" />
